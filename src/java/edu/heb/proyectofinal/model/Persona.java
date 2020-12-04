@@ -6,7 +6,7 @@ package edu.heb.proyectofinal.model;
 
 public class Persona {
 
-    private int idPersona;
+    private String idPersona;
     private String nombre;
     private String primer_apellido;
     private String segundo_apellido;
@@ -22,7 +22,7 @@ public class Persona {
     public Persona() {
     }
 
-    public Persona(int idPersona, String nombre, String primer_apellido, String segundo_apellido, String ciudad, String colonia, String cp, int numero_exterior, int numero_interior, String telefono, String celular, String correo_electronico) {
+    public Persona(String idPersona, String nombre, String primer_apellido, String segundo_apellido, String ciudad, String colonia, String cp, int numero_exterior, int numero_interior, String telefono, String celular, String correo_electronico) {
         this.idPersona = idPersona;
         this.nombre = nombre;
         this.primer_apellido = primer_apellido;
@@ -37,11 +37,11 @@ public class Persona {
         this.correo_electronico = correo_electronico;
     }
 
-    public int getIdPersona() {
+    public String getIdPersona() {
         return idPersona;
     }
 
-    public void setIdPersona(int idPersona) {
+    public void setIdPersona(String idPersona) {
         this.idPersona = idPersona;
     }
 

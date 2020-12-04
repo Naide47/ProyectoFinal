@@ -9,7 +9,7 @@ import java.sql.Date;
 
 public class Peticion {
 
-    private int idPeticion;
+    private String idPeticion;
     private Date fechaPeticion;
     private String descripcion;
     private int estatus;
@@ -19,7 +19,7 @@ public class Peticion {
     public Peticion() {
     }
 
-    public Peticion(int idPeticion, Date fechaPeticion, String descripcion, int estatus, Cliente cliente, Usuario[] usuarios) {
+    public Peticion(String idPeticion, Date fechaPeticion, String descripcion, int estatus, Cliente cliente, Usuario[] usuarios) {
         this.idPeticion = idPeticion;
         this.fechaPeticion = fechaPeticion;
         this.descripcion = descripcion;
@@ -28,11 +28,11 @@ public class Peticion {
         this.usuarios = usuarios;
     }
 
-    public int getIdPeticion() {
+    public String getIdPeticion() {
         return idPeticion;
     }
 
-    public void setIdPeticion(int idPeticion) {
+    public void setIdPeticion(String idPeticion) {
         this.idPeticion = idPeticion;
     }
 

@@ -6,7 +6,7 @@ package edu.heb.proyectofinal.model;
 
 public class Cliente extends Persona {
 
-    private int idCliente;
+    private String idCliente;
     private String horario_disponible;
     private String nombre_empresa;
     private String persona_fisica_moral;
@@ -16,7 +16,7 @@ public class Cliente extends Persona {
     public Cliente() {
     }
 
-    public Cliente(int idCliente, String horario_disponible, String nombre_empresa, String persona_fisica_moral, Tamanio_empresa tamanio_empresa, Pais[] paises, int idPersona, String nombre, String primer_apellido, String segundo_apellido, String ciudad, String colonia, String cp, int numero_exterior, int numero_interior, String telefono, String celular, String correo_electronico) {
+    public Cliente(String idCliente, String horario_disponible, String nombre_empresa, String persona_fisica_moral, Tamanio_empresa tamanio_empresa, Pais[] paises, String idPersona, String nombre, String primer_apellido, String segundo_apellido, String ciudad, String colonia, String cp, int numero_exterior, int numero_interior, String telefono, String celular, String correo_electronico) {
         super(idPersona, nombre, primer_apellido, segundo_apellido, ciudad, colonia, cp, numero_exterior, numero_interior, telefono, celular, correo_electronico);
         this.idCliente = idCliente;
         this.horario_disponible = horario_disponible;
@@ -26,11 +26,11 @@ public class Cliente extends Persona {
         this.paises = paises;
     }
 
-    public int getIdCliente() {
+    public String getIdCliente() {
         return idCliente;
     }
 
-    public void setIdCliente(int idCliente) {
+    public void setIdCliente(String idCliente) {
         this.idCliente = idCliente;
     }
 
