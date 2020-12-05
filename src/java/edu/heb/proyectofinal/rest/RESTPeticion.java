@@ -30,7 +30,8 @@ public class RESTPeticion extends Application {
 
     String respuesta;
 
-    @GET
+    @POST
+    @Path("enviarPeticion")
     @Produces(MediaType.APPLICATION_JSON)
     public Response recibirPeticion(@FormParam("nombres") String nombres,
             @FormParam("primer_apellido") String primer_apellido,
@@ -131,11 +132,13 @@ public class RESTPeticion extends Application {
         return Response.status(Response.Status.OK).entity(respuesta).build();
     }
 
-    @GET
+    @POST
+    @Path("aceptarPeticion")
     @Produces(MediaType.APPLICATION_JSON)
     public Response aceptarPeticion(@FormParam("idPeticion") String idPeticion,
             @FormParam("idUsuario") String idUsuario) {
         try {
+            
             Usuario usuario = new Usuario();
             usuario.setIdUsuario(idUsuario);
             peticion.setIdPeticion(idPeticion);
@@ -149,7 +152,8 @@ public class RESTPeticion extends Application {
         return Response.status(Response.Status.OK).entity(respuesta).build();
     }
 
-    @GET
+    @POST
+    @Path("consultarPeticiones")
     @Produces(MediaType.APPLICATION_JSON)
     public Response consultarPeticiones() {
         try {

@@ -26,13 +26,17 @@ public class ControllerUsuario {
 
     public Usuario registrarUsuario(Usuario usuario) {
         try {
+            
+            System.out.println("query");
             query = "CALL registrarUsuario(?, ?, ?, ?,"
                     + "?, ?, ?, ?, ?"
                     + "?, ?, ?, ?";
 
             conn.conectar();
+            System.out.println("conn.conectar();");
 
             cs = conn.getConnection().prepareCall(query);
+            System.out.println("cs = conn.getConnection().prepareCall(query);");
 
             cs.setString("var_nombres", usuario.getNombre());
             cs.setString("var_primer_apellido", usuario.getPrimer_apellido());
@@ -46,12 +50,17 @@ public class ControllerUsuario {
             cs.setString("var_celular", usuario.getCelular());
             cs.setString("var_correo", usuario.getCorreo_electronico());
             cs.setInt("var_rol", usuario.getRol());
-
+            System.out.println("preparo el cs");
+            
             cs.registerOutParameter("resultado", Types.BOOLEAN);
+            System.out.println("preparo el cs de salida");
 
             cs.execute();
+            System.out.println("cs.execute();");
+            System.out.println(query);
 
             boolean resultado = cs.getBoolean("resultado");
+            System.out.println("resultado: " + resultado);
 
             if (resultado) {
                 query = "SELECT nombre_usuario, contrasenia FROM Usuario WHERE correo = ?";
@@ -86,38 +95,65 @@ public class ControllerUsuario {
     public Usuario iniciarSesion(Usuario usuario) {
         try {
             query = "CALL iniciarSesion(?, ?, ?)";
+//            System.out.println("query = \"CALL iniciarSesion(?, ?, ?)\";");
 
             conn.conectar();
+//            System.out.println("conn.conectar();");
 
             cs = conn.getConnection().prepareCall(query);
+//            System.out.println("cs = conn.getConnection().prepareCall(query);");
 
             cs.setString("var_nombre_usuario", usuario.getNombre_usuario());
             cs.setString("var_contrasenia", usuario.getContrasenia());
-
+//            System.out.println("cs set string");
+            
             cs.registerOutParameter("resultado", Types.BOOLEAN);
-
+//            System.out.println("cs.registerOutParameter(\"resultado\", Types.BOOLEAN);");
+            
+//            System.out.println("query: " + cs.toString());
+            
             cs.execute();
+//            System.out.println("cs.execute();");
+            
+//            System.out.println("Resultado de la busqueda: " + cs.getBoolean("resultado"));
 
             if (cs.getBoolean("resultado")) {
-                query = "SELECt * FROM v_usuarios1 WHERE nombre_usuario = ?";
+//                System.out.println("Encontro al usuario");
+                
+                query = "SELECT * FROM v_usuarios1 WHERE nombre_usuario = ?";
+//                System.out.println("query = \"SELECT * FROM v_usuarios1 WHERE nombre_usuario = ?\";");
 
                 ps = conn.getConnection().prepareCall(query);
+//                System.out.println("ps = conn.getConnection().prepareCall(query);");
 
                 ps.setString(1, usuario.getNombre_usuario());
+//                System.out.println("ps.setString(1, usuario.getNombre_usuario());");
+                
+//                System.out.println("query: " + ps.toString());
 
                 rs = ps.executeQuery();
+//                System.out.println("rs = ps.executeQuery();");
 
                 Usuario aux = new Usuario();
+//                System.out.println("Usuario aux = new Usuario();");
 
                 if (rs.next()) {
+//                    System.out.println("if (rs.next())");
                     if (rs.getBoolean("estatus")) {
+//                        System.out.println("estatus: " + rs.getBoolean("estatus"));
                         aux.setIdUsuario(rs.getString("idUsuario"));
+//                        System.out.println("idUsuario: " + rs.getString("idUsuario"));
                         aux.setNombre_usuario(rs.getString("nombre_usuario"));
+//                        System.out.println("nombre_usuario: " + rs.getString("nombre_usuario"));
                         aux.setRol(rs.getInt("rol"));
+//                        System.out.println("rol: " + rs.getInt("rol"));
 //                        aux.setIdPersona(rs.getString("idPersona"));
-                        aux.setNombre(rs.getString("nombre"));
+                        aux.setNombre(rs.getString("nombres"));
+//                        System.out.println("nombres: " + rs.getString("nombres"));
                         aux.setPrimer_apellido(rs.getString("primer_apellido"));
+//                        System.out.println("primer_apellido: " + rs.getString("primer_apellido"));
                         aux.setSegundo_apellido(rs.getString("segundo_apellido"));
+//                        System.out.println("segundo_apellido: " + rs.getString("segundo_apellido"));
 //                        aux.setCiudad(rs.getString("ciudad"));
 //                        aux.setColonia(rs.getString("colonia"));
 //                        aux.setCp(rs.getString("cp"));
@@ -126,15 +162,25 @@ public class ControllerUsuario {
 //                        aux.setTelefono(rs.getString("telefono"));
 //                        aux.setCelular(rs.getString("celular"));
                         aux.setCorreo_electronico(rs.getString("correo"));
+//                        System.out.println("correo: " + rs.getString("correo"));
 
+//                        System.out.println("retorno aux");
+                        
+                        conn.desconectar();
                         return aux;
                     } else {
+//                        System.out.println("El usuario tiene estatus FALSE");
+                        conn.desconectar();
                         return null;
                     }
                 } else {
+//                    System.out.println("El rs estaba vacio");
+                    conn.desconectar();
                     return null;
                 }
             } else {
+//                System.out.println("No se encontro al usuario");
+                conn.desconectar();
                 return null;
             }
 

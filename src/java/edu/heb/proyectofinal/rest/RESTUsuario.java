@@ -10,6 +10,7 @@ import edu.heb.proyectofinal.control.ControllerUsuario;
 import edu.heb.proyectofinal.model.Usuario;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
@@ -26,7 +27,7 @@ public class RESTUsuario extends Application {
 
     String respuesta;
 
-    @GET
+    @POST
     @Path("registrar")
     @Produces(MediaType.APPLICATION_JSON)
     public Response registrarUsuario(@FormParam("nombres") String nombres,
@@ -73,24 +74,32 @@ public class RESTUsuario extends Application {
         }
         return Response.status(Response.Status.OK).entity(respuesta).build();
     }
-
-    @GET
+    
+    @POST
+    @Path("login")
     @Produces(MediaType.APPLICATION_JSON)
     public Response iniciarSesion(@FormParam("nombre_usuario") String nombre_usuario,
             @FormParam("contrasenia") String contrasenia) {
-
         try {
+            //System.out.println("nombre_usuario: " + nombre_usuario);
+            //System.out.println("contrasenia: " + contrasenia);
             usuario = new Usuario();
+//            System.out.println("usuario = new Usuario();");
             usuario.setNombre_usuario(nombre_usuario);
+//            System.out.println("usuario.setNombre_usuario(nombre_usuario);");
             usuario.setContrasenia(contrasenia);
+//            System.out.println("usuario.setContrasenia(contrasenia);");
             
             usuario = cu.iniciarSesion(usuario);
+            respuesta = new Gson().toJson(usuario);
+//            System.out.println("usuario = cu.iniciarSesion(usuario);");
         } catch (Exception e) {
             System.out.println("Error al iniciar sesión (REST)");
             respuesta = null;
             e.printStackTrace();
         }
 
+        System.out.println("respuesta: " + respuesta);
         return Response.status(Response.Status.OK).entity(respuesta).build();
     }
 
