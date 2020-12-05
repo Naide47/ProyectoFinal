@@ -40,7 +40,7 @@ and open the template in the editor.
         <nav class="navbar navbar-expand-lg navbar-dark teal darken-3">
             <!-- Navbar brand -->
 
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="index.html">
                 <img src="style/img/logo.png" height="30" alt="mdb logo">
             </a>
             <!-- Collapse button -->
@@ -53,11 +53,11 @@ and open the template in the editor.
                 <!-- Links -->
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="index.html">
                             <i class="fas fa-home"></i> Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="Filosofia.html">
                             <i class="fas fa-layer-group"></i> Filosofia</a>
                     </li>
                     <li class="nav-item">
@@ -91,8 +91,22 @@ and open the template in the editor.
                     <FONT FACE="times new roman" size=7 id="titulo">"Humanos Emprendiendo el Desarrollo"</FONT>
                     
                     <br><br><br>
-                    <h3>Bienvenido </h3>
-                    <a href="Peticiones.html">Peticiones</a>
+                    <h2>Bienvenido </h2>
+                    <h3>¿Quienes somos?<br>
+                        HED es una empresa dedicada al desarrollo de software de<br>
+                        calidad, con un equipo de desarrollo experimentado y capacitado.<br>
+                        <br>
+                        <br>
+                        Historia:<br>
+                        HED fue creada por un grupo de jovenes Universitarios de la UTL.<br>
+                        Cuando se desarrollo este equipo gracias a una actividad de parte<br>
+                        de la universidad, seguimos trabajando en mas proyectos en conjunto<br>
+                        para cumplir un objetivo en especial, que es emprende una empresa<br>
+                        nueva de desarrollo de software en León gto.<br>
+                        <br>
+                        <br>
+                        <br>
+                        ¿Qué estas esperando? llamanos y has crecer tu negocio</h3>
                 </div>
                 <div class="col-2">
                 </div>
@@ -224,7 +238,7 @@ and open the template in the editor.
                                 <div class="col">
                                     <!-- Segundo apellido -->
                                     <div class="md-form">
-                                        <input type="email" id="txtApe2" class="form-control">
+                                        <input type="text" id="txtApe2" class="form-control">
                                         <label for="txtApe2">Segundo apellido</label>
                                     </div>
                                 </div>
@@ -251,20 +265,8 @@ and open the template in the editor.
                                 <div class="col">
                                     <!-- num int -->
                                     <div class="md-form">
-                                        <input type="number" id="numInte" class="form-control">
+                                        <input type="number" id="numInt" class="form-control">
                                         <label for="numInte">Numero Interior</label>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <!-- Letra -->
-                                    <div class="md-form">
-                                        <select class="mdb-select md-form colorful-select dropdown-default">
-                                            <option value="" disabled selected>Letra</option>
-                                            <option value="A">A</option>
-                                            <option value="B">B</option>
-                                            <option value="C">C</option>
-                                        </select>
-
                                     </div>
                                 </div>
                                 <div class="col">
@@ -275,11 +277,7 @@ and open the template in the editor.
                                     </div>
                                 </div>
                             </div>
-                            <!-- Colonia -->
-                            <div class="md-form mt-3">
-                                <input type="text" id="txtCol" class="form-control">
-                                <label for="txtCol"><font  size=3 class="text-danger">*</font> Colonia</label>
-                            </div>
+                            
                             <!--municipio y estado-->
                             <div class="form-row">
                                 <div class="col">
@@ -292,7 +290,7 @@ and open the template in the editor.
                                 <div class="col">
                                     <!-- Estado -->
                                     <div class="md-form">
-                                        <input type="email" id="txtEstado" class="form-control">
+                                        <input type="text" id="txtEstado" class="form-control">
                                         <label for="txtEstado"><font  size=3 class="text-danger">*</font> Estado</label>
                                     </div>
                                 </div>
@@ -315,36 +313,36 @@ and open the template in the editor.
                             </div>
                             <!--Tamaño de la empresa-->
                             <div class="md-form">
-                                <select class="mdb-select md-form colorful-select dropdown-info">
+                                <select class="mdb-select md-form colorful-select dropdown-info" id="tamanio_empresa">
                                     <option value="" disabled selected>Tamaño de la empresa</option>
-                                    <option value="0">MicroEmpresa</option>
+                                    
                                     <option value="1">Chica</option>
                                     <option value="2">Mediana</option>
-                                    <option value="3">Grnade</option>
+                                    <option value="3">Grande</option>
                                 </select>
                             </div>
 
                             <!--Sucursales-->
                             <div class="form-check">
                                 <input type="checkbox" class="form-check-input" id="materialContactFormCopy" onchange="Confirmar()">
-                                <label class="form-check-label" for="materialContactFormCopy"> Dirigue sucursales en otro pais</label>
+                                <label class="form-check-label" for="materialContactFormCopy"> Dirige sucursales en otro pais</label>
                             </div>
                             <!--Sucursales--><!--Ubicacion-->
                             <div id="flotante" style="display:none;">
-                                <select class="mdb-select md-form colorful-select dropdown-danger" multiple>
-                                    <option value="" disabled selected>Seleccione los paises</option>
+                                <select id="paises" class="mdb-select md-form colorful-select dropdown-danger" multiple>
+                                    
                                     <option value="" data-icon="style/img/mexico.png" class="rounded-circle">
                                         México</option>
-                                    <option value="" data-icon="style/img/eua.png" class="rounded-circle">
+                                    <option value="10" data-icon="style/img/eua.png" class="rounded-circle" selected disabled>
                                         Estados Unidos</option>
-                                    <option value="" data-icon="style/img/canada.png" class="rounded-circle">
+                                    <option value="100" data-icon="style/img/canada.png" class="rounded-circle">
                                         Cánada</option>
                                 </select>
                                 <button class="btn-save btn btn-primary btn-sm">Guardar</button>
                             </div>
                             <!-- horario disponible-->
                             <div class="md-form">
-                                <input type="time" id="timeDis" class="form-control">
+                                <input type="text" id="timeDis" class="form-control">
                                 <label for="timeDis"><font  size=3 class="text-danger">*</font> Horarios con mas disponibilidad</label>
                             </div>
                             <div class="md-form">
@@ -357,7 +355,7 @@ and open the template in the editor.
                     </div>
                     <div class="modal-footer justify-content-center">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-primary" onclick="insertarPeticion()">Enviar</button>
+                        <button type="submit" class="btn btn-primary" onclick="insertarPeticion()">Enviar</button>
                     </div>
                 </div>
             </div>

@@ -11,6 +11,7 @@ import edu.heb.proyectofinal.database.Conexion;
 import edu.heb.proyectofinal.model.Cliente;
 import edu.heb.proyectofinal.model.Pais;
 import edu.heb.proyectofinal.model.Peticion;
+import edu.heb.proyectofinal.model.Tamanio_empresa;
 import edu.heb.proyectofinal.model.Usuario;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
@@ -28,7 +29,7 @@ public class RESTPeticion extends Application {
 
     Peticion peticion;
 
-    String respuesta;
+    String respuesta; 
 
     @POST
     @Path("enviarPeticion")
@@ -70,7 +71,7 @@ public class RESTPeticion extends Application {
             cliente.setColonia(colonia);
             cliente.setCp(cp);
             cliente.setNumero_exterior(Integer.parseInt(numero_exterior));
-            if (!numero_exterior.equals("")) {
+            if (!numero_exterior.equals("") && numero_exterior != null) {
                 cliente.setNumero_interior(Integer.parseInt(numero_interior));
             } else {
                 cliente.setNumero_interior(0);
@@ -78,16 +79,19 @@ public class RESTPeticion extends Application {
             cliente.setTelefono(telefono);
             cliente.setCelular(celular);
             cliente.setCorreo_electronico(correo_electronico);
+            Tamanio_empresa aux = new Tamanio_empresa();
             switch (tamanio_empresa) {
-                case "pequenia":
-                    cliente.getTamanio_empresa().setIdTamanio_empresa(0);
+                case "Chica":
+                    aux.setIdTamanio_empresa(1);
                     break;
-                case "mediana":
-                    cliente.getTamanio_empresa().setIdTamanio_empresa(1);
+                case "Mediana":
+                    aux.setIdTamanio_empresa(2);
                     break;
-                case "grande":
-                    cliente.getTamanio_empresa().setIdTamanio_empresa(2);
+                case "Grande":
+                    aux.setIdTamanio_empresa(3);
+                    break;
             }
+            cliente.setTamanio_empresa(aux);
             cliente.setHorario_disponible(horario_disponible);
             cliente.setNombre_empresa(nombre_empresa);
             cliente.setPersona_fisica_moral(perpersona_fisica_moral);
@@ -138,9 +142,11 @@ public class RESTPeticion extends Application {
     public Response aceptarPeticion(@FormParam("idPeticion") String idPeticion,
             @FormParam("idUsuario") String idUsuario) {
         try {
-            
+            System.out.println("idUsuario: " + idUsuario);
+            System.out.println("idPeticion: " + idPeticion);
             Usuario usuario = new Usuario();
             usuario.setIdUsuario(idUsuario);
+            peticion = new Peticion();
             peticion.setIdPeticion(idPeticion);
 
             respuesta = new Gson().toJson(controllerPeticion.aceptarPeticion(peticion, usuario));
@@ -152,7 +158,7 @@ public class RESTPeticion extends Application {
         return Response.status(Response.Status.OK).entity(respuesta).build();
     }
 
-    @POST
+    @GET
     @Path("consultarPeticiones")
     @Produces(MediaType.APPLICATION_JSON)
     public Response consultarPeticiones() {

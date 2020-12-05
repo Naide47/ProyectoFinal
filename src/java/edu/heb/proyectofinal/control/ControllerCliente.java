@@ -23,7 +23,7 @@ public class ControllerCliente {
 
     public boolean buscarCliente(String correo_electronico) throws SQLException {
 
-        query = "SELECT nombres FROM v_cliente1 WHERE correo_electronico = ?";
+        query = "SELECT nombres FROM v_clientes1 WHERE correo = ?";
 
         conn.conectar();
 

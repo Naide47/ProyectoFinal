@@ -26,9 +26,9 @@ public class ControllerPeticion {
     Conexion conn = new Conexion();
 
     CallableStatement cs;
-    
+
     PreparedStatement ps;
-    
+
     ResultSet rs;
 
     ControllerCliente cc = new ControllerCliente();
@@ -68,25 +68,15 @@ public class ControllerPeticion {
                 return resultado;
 
             } else {
-                query = "CALL registrarPeticion0(?, ?, ?, ?, ?, ?"
-                        + "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?"
+                query = "CALL registrarPeticion1(?, ?, ?, ?, ?, ?, "
+                        + "?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, "
                         + "?, ?, ?)";
 
                 conn.conectar();
 
                 cs = conn.getConnection().prepareCall(query);
-                
-                for(int i = 0; i < paises.length; i++) {
-                    if(paises[i].getIdPais() == 1) {
-                        pais1 = true;
-                    }
-                    if(paises[i].getIdPais() == 2) {
-                        pais2 = true;
-                    }
-                    if(paises[i].getIdPais() == 3) {
-                        pais3 = true;
-                    }
-                }
+
+                pais2 = true;
 
 //                if (aux.getPaises(). == 1) {
 //                    pais1 = true;
@@ -99,7 +89,6 @@ public class ControllerPeticion {
 //                if (aux.getPaises().length == 3) {
 //                    pais3 = true;
 //                }
-
                 cs.setString("var_nombres", aux.getNombre());
                 cs.setString("var_primer_apellido", aux.getPrimer_apellido());
                 cs.setString("var_segundo_apellido", aux.getSegundo_apellido());
@@ -111,9 +100,9 @@ public class ControllerPeticion {
                 cs.setString("var_telefono", aux.getTelefono());
                 cs.setString("var_celular", aux.getCelular());
                 cs.setString("var_correo", aux.getCorreo_electronico());
-                cs.setString("var_tamanio_empresa", aux.getTamanio_empresa().getTamanio_empresa());
-                cs.setString("var_horario_disponible ", aux.getHorario_disponible());
-                cs.setString("var_nombre_empresa ", aux.getNombre_empresa());
+                cs.setInt("var_tamanio_empresa", aux.getTamanio_empresa().getIdTamanio_empresa());
+                cs.setString("var_horario_disponible", aux.getHorario_disponible());
+                cs.setString("var_nombre_empresa", aux.getNombre_empresa());
                 cs.setString("var_persona_fisica_moral", aux.getPersona_fisica_moral());
                 cs.setString("var_descripcion", peticion.getDescripcion());
                 cs.setBoolean("pais1", pais1);
@@ -121,6 +110,8 @@ public class ControllerPeticion {
                 cs.setBoolean("pais3", pais3);
 
                 cs.registerOutParameter("resultado", Types.BOOLEAN);
+
+                System.out.println(cs.toString());
 
                 cs.execute();
 
@@ -146,7 +137,7 @@ public class ControllerPeticion {
 
             cs = conn.getConnection().prepareCall(query);
 
-            cs.setString("var_idpeticion", peticion.getIdPeticion());
+            cs.setString("var_idPeticion", peticion.getIdPeticion());
             cs.setString("var_idUsuario", usuario.getIdUsuario());
 
             cs.registerOutParameter("resultado", Types.BOOLEAN);
@@ -166,49 +157,67 @@ public class ControllerPeticion {
     }
 
     public Queue consultarPeticiones() {
-        
+
         Queue<Peticion> peticiones = new LinkedList<>();
-        
+
         try {
-            
-            query = "SELECT * FROM v_peticiones WHERE pet.estatus = 1";
-            
+
+            query = "SELECT * FROM v_peticiones WHERE estatus = 1";
+
             conn.conectar();
-            
+
             ps = conn.getConnection().prepareCall(query);
-            
+
             rs = ps.executeQuery();
-            
+
             Peticion pe_aux;
+            Cliente cl_aux;
             Tamanio_empresa te_aux;
-            
-            while(rs.next()) {
-                
+            int i = 0;
+
+            while (rs.next()) {
+                i++;
+//                System.out.println("Intento " + i);
                 pe_aux = new Peticion();
                 te_aux = new Tamanio_empresa();
-                
+                cl_aux = new Cliente();
+
                 te_aux.setTamanio_empresa(rs.getString("tamanio_empresa"));
-                
+//                System.out.println("Tamanio_empresa: " + rs.getString("tamanio_empresa"));
+
+                cl_aux.setTamanio_empresa(te_aux);
+
                 pe_aux.setIdPeticion(rs.getString("idPeticion"));
-                pe_aux.getCliente().setNombre(rs.getString("nombres"));
-                pe_aux.getCliente().setPrimer_apellido(rs.getString("primer_apellido"));
-                pe_aux.getCliente().setSegundo_apellido(rs.getString("segundo_apellido"));
-                pe_aux.getCliente().setCiudad(rs.getString("ciudad"));
-                pe_aux.getCliente().setColonia(rs.getString("colonia"));
-                pe_aux.getCliente().setCp(rs.getString("cp"));
-                pe_aux.getCliente().setNumero_exterior(rs.getInt("numero_exterior"));
-                pe_aux.getCliente().setNumero_interior(rs.getInt("numero_interior"));
-                pe_aux.getCliente().setTelefono(rs.getString("telefono"));
-                pe_aux.getCliente().setCelular(rs.getString("celular"));
-                pe_aux.getCliente().setCorreo_electronico(rs.getString("correo"));
-                pe_aux.getCliente().setTamanio_empresa(te_aux);
-                pe_aux.getCliente().setPersona_fisica_moral(rs.getString("persona_fisica_moral"));
+//                System.out.println("idPeticion: " + rs.getString("idPeticion"));
+
+                cl_aux.setNombre(rs.getString("nombres"));
+                
+                cl_aux.setPrimer_apellido(rs.getString("primer_apellido"));
+//                System.out.println(rs.getString("primer_apellido"));
+
+                cl_aux.setSegundo_apellido(rs.getString("segundo_apellido"));
+//                System.out.println(rs.getString("segundo_apellido"));
+                cl_aux.setCiudad(rs.getString("ciudad"));
+//                System.out.println(rs.getString("ciudad"));
+                cl_aux.setColonia(rs.getString("colonia"));
+//                System.out.println(rs.getString("colonia"));
+                cl_aux.setCp(rs.getString("cp"));
+//                System.out.println(rs.getString("cp"));
+                cl_aux.setNumero_exterior(rs.getInt("numero_exterior"));
+//                System.out.println(rs.getInt("numero_exterior"));
+                cl_aux.setNumero_interior(rs.getInt("numero_interior"));
+                cl_aux.setTelefono(rs.getString("telefono"));
+                cl_aux.setCelular(rs.getString("celular"));
+                cl_aux.setCorreo_electronico(rs.getString("correo"));
+                cl_aux.setTamanio_empresa(te_aux);
+                cl_aux.setPersona_fisica_moral(rs.getString("persona_fisica_moral"));
+                pe_aux.setCliente(cl_aux);
                 pe_aux.setFechaPeticion(rs.getDate("fecha_peticion"));
                 pe_aux.setDescripcion(rs.getString("descripcion"));
-                
+
                 peticiones.add(pe_aux);
             }
-            
+
             conn.desconectar();
             return peticiones;
 
