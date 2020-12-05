@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Agendar Cita</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- para los estilos -->
+        <link rel="stylesheet" type="text/css" href="style/MDB-Pro_4.8.8/css/mdb.css">
+        <link rel="stylesheet" type="text/css" href="style/MDB-Pro_4.8.8/">
+        <link rel="stylesheet" type="text/css" href="style/MDB-Pro_4.8.8/css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="style/MDB-Pro_4.8.8/css/style.css">
+        <link rel="stylesheet" type="text/css" href="style/MDB-Pro_4.8.8/css/sweetalert2.css">
+        <script type="text/javascript" src="style/MDB-Pro_4.8.8/js/icons.js"></script>
+        <script type="text/javascript" src="style/MDB-Pro_4.8.8/js/sweetalert2.js"></script>
+        <link rel="stylesheet" type="text/css" href="style/estilos.css">
+        <!-- para los alerts -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+    </head>
+    <body>
+        <!--Navbar-->
+        <nav class="navbar navbar-expand-lg navbar-dark teal darken-3">
+            <!-- Navbar brand -->
+
+            <a class="navbar-brand" href="#">
+                <img src="style/img/logo.png" height="50" alt="mdb logo">
+            </a>
+        </nav>
+        <!--/.Navbar-->
+        <!--Body -->
+        <div class="row">
+            <div class="col-2">
+
+            </div>
+            <div class="col-8">
+                <section class="form-elegant">
+
+                    <!--Agendar Cita-->
+                    <div class="card">
+
+                        <div class="card-body mx-4">
+
+                            <!--titulo-->
+                            <div class="text-center">
+                                <h2 class="dark-grey-text mb-5 text-center"><strong>Agendar Cita</strong></h2>
+                            </div>
+
+                            <!--Body de card-->
+                            <!--Cliente-->
+                            <div class="md-form">
+                                <input type="text" id="txtClienteCita" class="form-control">
+                                <label for="txtClienteCita">Cliente</label>
+                            </div>
+                            <!--Empresa-->
+                            <div class="md-form">
+                                <input type="text" id="txtEmpresaCita" class="form-control">
+                                <label for="txtEmpresaCita">Empresa</label>
+                            </div>
+                            <!--Telefono-->
+                            <div class="md-form">
+                                <input type="number" id="nmTelU" class="form-control">
+                                <label for="nmTelU">Telefono</label>
+                            </div>
+                            <!--Agendar dia-->
+                            <div class="form-row">
+                                <div class="col">
+                                    <!-- Dia -->
+                                    <div class="md-form">
+                                        <input type="date" id="txtFecha" class="form-control">
+                                <label for="txtFecha">Seleccione el dia</label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <!-- Hora -->
+                                    <div class="md-form">
+                                        <input type="time" id="txtHora" class="form-control">
+                                        <label for="txtHora">Seleccione una hora</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Comentarios-->
+                            <div class="md-form">
+                                <input type="text" id="txtComentarios" class="form-control">
+                                <label for="txtComentarios">Descripcion o comentarios</label>
+                            </div>
+                            <!--Relleno-->
+                            <div class="md-form">
+                                <h6>Aqui relleno como todo lo dicho quedara solo por correo electronico</h6>
+                            </div>
+                            <div class="text-center mb-3">
+                                <button type="button" class="btn btn-outline-dark-green btn-rounded waves-effect">
+                                    <i class="fas fa-save"></i>  Guardar</button>
+                                <button type="button" class="btn btn-outline-danger btn-rounded waves-effect">
+                                    <i class="fas fa-window-close"></i>  Cancelar</button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--/Form without header-->
+
+                </section>
+            </div>
+            <div class="col-2">
+            </div>
+        </div>
+        <!--/Body -->
+        <!-- Footer -->
+        <footer class="page-footer font-small teal darken-3">
+
+            <!-- Footer Elements -->
+            <div class="container">
+
+                <!-- Grid row-->
+                <div class="row">
+
+                    <!-- Grid column -->
+                    <div class="col-md-12 py-5">
+                        <div class="mb-5 flex-center">
+
+                            <!-- Facebook -->
+                            <a class="fb-ic">
+                                <i class="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                            </a>
+                            <!-- Twitter -->
+                            <a class="tw-ic">
+                                <i class="fab fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                            </a>
+                            <!-- Google +-->
+                            <a class="gplus-ic">
+                                <i class="fab fa-google-plus-g fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                            </a>
+                            <!--Instagram-->
+                            <a class="ins-ic">
+                                <i class="fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                            </a>
+
+                        </div>
+                    </div>
+                    <!-- Grid column -->
+
+                </div>
+                <!-- Grid row-->
+
+            </div>
+            <!-- Footer Elements -->
+
+            <!-- Copyright -->
+            <div class="footer-copyright text-center py-3">© 2020 Copyright:HED
+            </div>
+            <!-- Copyright -->
+
+        </footer>
+        <!-- Footer -->
+        <!-- Footer -->
+        <!--Modal Login-->
+        <div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-notify modal-info" role="document">
+                <!--Content-->
+                <div class="modal-content">
+                    <!--Header-->
+                    <div class="modal-header text-center">
+                        <h4 class="modal-title white-text w-100 font-weight-bold py-2">Ingrese sus datos</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" class="white-text">&times;</span>
+                        </button>
+                    </div>
+
+                    <!--Body-->
+                    <div class="modal-body">
+                        <div class="md-form mb-5">
+                            <i class="fas fa-user prefix grey-text"></i>
+                            <input type="text" id="txtUser" class="form-control validate">
+                            <label data-error="wrong" data-success="right" for="txtUser">Usuario</label>
+                        </div>
+
+                        <div class="md-form">
+                            <i class="fas fa-lock  prefix grey-text"></i>
+                            <input type="email" id="txtPass" class="form-control validate">
+                            <label data-error="wrong" data-success="right" for="txtPass">Contraseña</label>
+                        </div>
+                    </div>
+
+                    <!--Footer-->
+                    <div class="text-center mt-4">
+                        <button class="btn btn-default mt-1">Iniciar Sesion</button>
+                    </div>
+
+                </div>
+                <!--/.Content-->
+            </div>
+        </div>
+        <!--/.Cierre modal Login-->
+
+        <!-- Modal solicitar peticion-->
+        <div class="modal fade right" id="fullHeightModalRight" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+
+            <!-- Add class .modal-full-height and then add class .modal-right (or other classes from list above) to set a position to the modal -->
+            <div class="modal-dialog modal-full-height modal-right" role="document">
+
+
+                <div class="modal-content">
+                    <div class="modal-header bg-primary text-light">
+                        <h4 class="modal-title w-100" id="myModalLabel">Solicitar Petición</h4>
+                        <button type="button" class="close text-danger" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Form -->
+                        <form class="text-center" style="color: #757575;" action="#!">
+
+                            <!-- Name -->
+                            <div class="md-form">
+                                <input type="text" id="txtNombre" class="form-control">
+                                <label for="txtNombre">* Nombre</label>
+                            </div>
+
+                            <!-- Apellidos -->
+                            <div class="form-row">
+                                <div class="col">
+                                    <!-- Primer apellido -->
+                                    <div class="md-form">
+                                        <input type="text" id="txtApe1" class="form-control">
+                                        <label for="txtApe1">* Primer apellido</label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <!-- Segundo apellido -->
+                                    <div class="md-form">
+                                        <input type="email" id="txtApe2" class="form-control">
+                                        <label for="txtApe2">Segundo apellido</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Domicilio-->
+                            <div class="form-row">
+                                <div class="col">
+                                    <!-- Calle -->
+                                    <div class="md-form">
+                                        <input type="text" id="txtCalle" class="form-control">
+                                        <label for="txtCalle">* Calle</label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <!-- Nume Ext -->
+                                    <div class="md-form">
+                                        <input type="number" id="numExt" class="form-control">
+                                        <label for="numExt">*Numero exterior</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Opcionales num int y letra y CP-->
+                            <div class="form-row">
+                                <div class="col">
+                                    <!-- num int -->
+                                    <div class="md-form">
+                                        <input type="number" id="numInte" class="form-control">
+                                        <label for="numInte">Numero Interior</label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <!-- Letra -->
+                                    <div class="md-form">
+                                        <select class="mdb-select md-form colorful-select dropdown-default">
+                                            <option value="" disabled selected>Letra</option>
+                                            <option value="A">A</option>
+                                            <option value="B">B</option>
+                                            <option value="C">C</option>
+                                        </select>
+
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <!-- cp -->
+                                    <div class="md-form">
+                                        <input type="number" id="numCP" class="form-control">
+                                        <label for="numCP">* Codigo Postal</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Colonia -->
+                            <div class="md-form mt-3">
+                                <input type="text" id="txtCol" class="form-control">
+                                <label for="txtCol">* Colonia</label>
+                            </div>
+                            <!--municipio y estado-->
+                            <div class="form-row">
+                                <div class="col">
+                                    <!-- Municipio-->
+                                    <div class="md-form">
+                                        <input type="text" id="txtMuni" class="form-control">
+                                        <label for="txtMuni">* Municipio</label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <!-- Estado -->
+                                    <div class="md-form">
+                                        <input type="email" id="txtEstado" class="form-control">
+                                        <label for="txtEstado">* Estado</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- E-mail -->
+                            <div class="md-form">
+                                <input type="email" id="txtCorreo" class="form-control">
+                                <label for="txtCorreo">* Correo</label>
+                            </div>
+                            <!-- Telefono -->
+                            <div class="md-form">
+                                <input type="number" id="numTel" class="form-control">
+                                <label for="numTel">* Telefono</label>
+                            </div>
+
+                            <!-- Nombre empresa-->
+                            <div class="md-form">
+                                <input type="text" id="txtEmpresa" class="form-control">
+                                <label for="txtEmpresa">* Nombre de la Empresa</label>
+                            </div>
+                            <!--Tamaño de la empresa-->
+                            <div class="md-form">
+                                <select class="mdb-select md-form colorful-select dropdown-info">
+                                    <option value="" disabled selected>Tamaño de la empresa</option>
+                                    <option value="0">MicroEmpresa</option>
+                                    <option value="1">Chica</option>
+                                    <option value="2">Mediana</option>
+                                    <option value="3">Grnade</option>
+                                </select>
+                            </div>
+
+                            <!--Sucursales-->
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="materialContactFormCopy" onchange="Confirmar()">
+                                <label class="form-check-label" for="materialContactFormCopy"> Dirigue sucursales en otro pais</label>
+                            </div>
+                            <!--Sucursales--><!--Ubicacion-->
+                            <div id="flotante" style="display:none;">
+                                <select class="mdb-select md-form colorful-select dropdown-danger" multiple>
+                                    <option value="" disabled selected>Seleccione los paises</option>
+                                    <option value="" data-icon="style/img/mexico.png" class="rounded-circle">
+                                        México</option>
+                                    <option value="" data-icon="style/img/eua.png" class="rounded-circle">
+                                        Estados Unidos</option>
+                                    <option value="" data-icon="style/img/canada.png" class="rounded-circle">
+                                        Cánada</option>
+                                </select>
+                                <button class="btn-save btn btn-primary btn-sm">Guardar</button>
+                            </div>
+                            <!-- horario disponible-->
+                            <div class="md-form">
+                                <input type="time" id="timeDis" class="form-control">
+                                <label for="timeDis">* Horarios con mas disponibilidad</label>
+                            </div>
+                            <div class="md-form">
+                                <textarea id="Comen" class="form-control md-textarea" rows="3"></textarea>
+                                <label for="comen">Problematica o comentarios</label>
+                            </div>
+                        </form>
+                        <!-- Form -->
+                    </div>
+                    <div class="modal-footer justify-content-center">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary">Enviar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Full Height Modal Right -->
+        <!--/Modal solicitar peticion-->
+
+
+        <script type="text/javascript" src="style/MDB-Pro_4.8.8/js/jquery-3.4.1.js"></script>
+        <script type="text/javascript" src="style/MDB-Pro_4.8.8/js/mdb.js"></script>
+        <script type="text/javascript" src="style/MDB-Pro_4.8.8/js/bootstrap.js"></script>
+        <script type="text/javascript" src="style/MDB-Pro_4.8.8/js/addons/datatables.js"></script>
+        <script type="text/javascript" src="style/MDB-Pro_4.8.8/js/addons/datatables-select.js"></script>
+        <script src="functions/functions.js" type="text/javascript"></script>
+        <script src="functions/login.js" type="text/javascript"></script>
+        <script src="functions/loginChido xD.js" type="text/javascript"></script>
+
+        <!-- Bootstrap tooltips  -->
+        <script type="text/javascript" src="style/MDB-Pro_4.8.8/js/popper.min.js"></script>
+        <script type="text/javascript" src="style/MDB-Pro_4.8.8/js/mdb.min.js"></script>
+        <script>
+                                    // Material Select Initialization
+                                    $(document).ready(function () {
+                                        $('.mdb-select').materialSelect();
+                                    }
+                                    );
+        </script>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="style/MDB-Pro_4.8.8/js/mdb.js" type="text/javascript"></script>
+    </body>
+</html>

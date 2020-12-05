@@ -8,7 +8,7 @@ import java.sql.Date;
 
 public class Usuario extends Persona{
     
-    private int idUsuario;
+    private String idUsuario;
     private String nombre_usuario;
     private String contrasenia;
     private Date fecha_alta;
@@ -19,7 +19,7 @@ public class Usuario extends Persona{
     public Usuario() {
     }
 
-    public Usuario(int idUsuario, String nombre_usuario, String contrasenia, Date fecha_alta, Date fecha_baja, int rol, boolean estatus, int idPersona, String nombre, String primer_apellido, String segundo_apellido, String ciudad, String colonia, String cp, int numero_exterior, int numero_interior, String telefono, String celular, String correo_electronico) {
+    public Usuario(String idUsuario, String nombre_usuario, String contrasenia, Date fecha_alta, Date fecha_baja, int rol, boolean estatus, String idPersona, String nombre, String primer_apellido, String segundo_apellido, String ciudad, String colonia, String cp, int numero_exterior, int numero_interior, String telefono, String celular, String correo_electronico) {
         super(idPersona, nombre, primer_apellido, segundo_apellido, ciudad, colonia, cp, numero_exterior, numero_interior, telefono, celular, correo_electronico);
         this.idUsuario = idUsuario;
         this.nombre_usuario = nombre_usuario;
@@ -30,11 +30,11 @@ public class Usuario extends Persona{
         this.estatus = estatus;
     }
 
-    public int getIdUsuario() {
+    public String getIdUsuario() {
         return idUsuario;
     }
 
-    public void setIdUsuario(int idUsuario) {
+    public void setIdUsuario(String idUsuario) {
         this.idUsuario = idUsuario;
     }
 
